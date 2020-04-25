@@ -1,0 +1,58 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+
+\usepackage{ngerman}
+%\selectlanguage{english}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{float}
+
+% for matlab code
+% bw = blackwhite - optimized for print, otherwise source is colored
+%\usepackage[framed,numbered,bw]{mcode}
+
+% for other code
+\usepackage{listings}
+
+\setlength{\parindent}{0em}
+\usepackage{graphicx}
+
+% set section in CM
+\setkomafont{section}{\normalfont\bfseries\Large}
+
+%===================================
+\begin{document}
+
+\section{Protocol}
+At the meeting the decision is on this topic:\\
+
+building is a lecture room  at a university:\\
+
+functionalities:\\
+\begin{itemize}
+\item monitoring lecture times (eg. with calendar)
+\item room temperature 
+\item monitor CO2
+\item monitor beamer status (on/idle/off)
+\item monitor if room has students
+\end{itemize}
+
+Components:\\
+\begin{itemize}
+\item opening and closing of lecture room(for the beginning by email as equipment is expensive)
+\item automatization of window and curtain opening/closing 
+\item automatization of heater and air conditioner
+\item beamer status \"on\" triggers a actuator
+\item Infrared/camera to monitor presence of students in room
+\end{itemize}
+
+objectives:\\
+\begin{itemize}
+\item enegy efficiency
+\item comfortable
+\item security
+\item productivity
+\item health
+\end{itemize}
+
+\end{document}
