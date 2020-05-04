@@ -1,0 +1,10 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{ref_url1}
+Service computing department homepage,
+  \url{https://www.iaas.uni-stuttgart.de/en/department-service-computing/}
+
+\end{thebibliography}

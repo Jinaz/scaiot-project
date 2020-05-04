@@ -1,0 +1,97 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+%
+\title{Smart lecture rooms at universities}
+
+\author{Group ID 07: First Author \and
+Second Author \and
+Third Author}
+
+\institute{Service Computing Department, IAAS, University of Stuttgart
+\email{firstname.lastname@uni-stuttgart.de}}
+%
+\maketitle              % typeset the header of the contribution
+%
+\begin{abstract}
+The abstract should briefly summarize the contents of the report in
+150--250 words.
+
+This project is part of the lecture smart cities and internet of things of \cite{ref_url1}. 
+
+\keywords{First keyword  \and Second keyword \and Another keyword.}
+\end{abstract}
+%
+%
+%
+\section{System Introduction}
+Describe the scope (background information and problem statement) and the goals of your project.
+
+\section{System Analysis}
+We will describe the system with user stories in the following. For more details please read the issues on our \href{https://github.com/Jinaz/scaiot-project/issues}{github} for more details. These stories are transformed into issues which we can work on.\\
+
+The following user stories will be the main focus of our project.\\
+
+The following user stories will be the main focus.\\
+\begin{itemize}
+\item As a lecturer I want the room to automatically adjust light and curtains, so that my powerpoint is clearly visible.\\
+
+\item As a student or a lecturer I want the room temperature and humidity to be as ideal as possible for a lecture.\\
+
+\item As a manager of the cost of the buildings I want the system to idealize the energy so that the cost is minimized.\\
+\end{itemize}
+
+The following user stories will be additional features. Condition for implementing these will be the time we can invest into the project and the cost of the hardware.\\ 
+
+The following two user stories involve a door lock. As a physical door lock with electric mechanism is expensive we will stick to a simplification like sending an email or using a light to indicate the state of the door.\\
+\begin{itemize}
+\item As a caretaker of the building I want the doors to be locked after lecture hours to be able to guarantee the security of the building. \\
+
+\item As a student I want the doors to be open before lecture to be able to prepare my utils for the lecture.\\
+\end{itemize}
+
+\section{System Architecture Design}
+Describe and provide a design of the architecture of your system.
+
+The user interface is realized on a laptop which communicates with a raspberry Pi where our system runs. The learning algorithm is also on the raspberry Pi. In the user interface light and air condition can also be manually adjusted.\\
+
+With weather forecast, temperature sensors and CO2 sensors we adjust the air conditioner and the windows. \\
+
+An infrared camera is connected as a sensor to recognize persons in the room. As there might be students discussing with a lecturer after the lecture, the room must not lock the doors. \\ 
+
+
+
+Components:
+
+
+Presentation layer\\
+Application logic layer\\
+Data layer \\
+
+\section{System Implementation}
+The system implementation will be needed in the next sprint.
+
+\section{Discussion and Conclusions}
+The biggest limitation to our project is the hardware. There are many tutorials each modul we want to add, but the price for each part of the hardware can be quite expensive. As of the current situation in April/May 2020 we work with whatever we can get.\\
+
+The most interesting point while discussing was the point of how to adjust the room when the lecturer turns on his presentation. The biggest problem was how do we detect a presentation is being held. For now we stick to a actuator on the beamer which will change the lighting and the curtains.\\
+
+This concludes our first sprint of planning and environment setups.\\
+We suggest you to visit our github (\href{https://github.com/Jinaz/scaiot-project}{https://github.com/Jinaz/scaiot-project/issues}) to get a better overview.
+
+%
+% ---- Bibliography ----
+%
+\bibliographystyle{splncs04}
+\bibliography{mybib}
+
+All links were last followed on \today
+
+\end{document}
