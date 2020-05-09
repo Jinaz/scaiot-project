@@ -16,7 +16,7 @@ Zhixian Li \and
 Jingxi Zhang}
 
 \institute{Service Computing Department, IAAS, University of Stuttgart
-\email{st119871,,st141130@stud.uni-stuttgart.de}}
+\email{st119871,st146584,st141130@stud.uni-stuttgart.de}}
 %
 \maketitle              % typeset the header of the contribution
 %
@@ -53,22 +53,28 @@ The following two user stories involve a door lock. As a physical door lock with
 \end{itemize}
 
 \section{System Architecture Design}
-Describe and provide a design of the architecture of your system.
-
 The user interface is realized on a laptop which communicates with a raspberry Pi where our system runs. The learning algorithm is also on the raspberry Pi. In the user interface light and air condition can also be manually adjusted.\\
-
 With weather forecast, temperature sensors and CO2 sensors we adjust the air conditioner and the windows. \\
-
 An infrared camera is connected as a sensor to recognize persons in the room. As there might be students discussing with a lecturer after the lecture, the room must not lock the doors. \\ 
 
+Figure \ref{fig:SystemArchitecture} shows our system Architecture.
+
+\begin{figure}
+	\centering
+		\includegraphics[width=1.0\textwidth]{../img/SystemArchitecture.pdf}
+	\caption{SystemArchitecture}
+	\label{fig:SystemArchitecture}
+\end{figure}
 
 
-Components:
 
 
-Presentation layer\\
-Application logic layer\\
-Data layer \\
+%Components:
+
+
+%Presentation layer\\
+%Application logic layer\\
+%Data layer \\
 
 %
 % ---- Bibliography ----
