@@ -56,9 +56,9 @@ These two user stories involve a door lock. As a physical door lock with electri
 The user interface is realized on a laptop which communicates with a raspberry Pi where our system runs. The learning algorithm is also on the raspberry Pi. In the user interface light and air condition can also be manually adjusted.\\
 With weather forecast, temperature sensors and CO2 sensors we adjust the air conditioner and the windows. \\
 An infrared camera is connected as a sensor to recognize people in the room. As there might be students discussing with a lecturer after the lecture, the room must not lock the doors. \\
-Our Ubiquitous Layer wil process the data received from our sensors and combine it with calendar and weatherforecast data. Our planner service is the part where our ai planning come into play. It makes a decision based on the data given. The decision is forewarded to the actuators to carry out an action.\\
+Our Ubiquitous Layer will process the data received from our sensors and combine it with calendar and weatherforecast data. Our planner service is the part where our AI planning come into play. It makes a decision based on the data given. The decision is forewarded to the actuators to carry out an action.\\
 
-Figure \ref{fig:SystemArchitecture} shows our system Architecture.\\
+Figure \ref{fig:SystemArchitecture} shows our system Architecture. The loosely coupled system design principles like messaging will be used and most of the components will communicate with each other over the scalable messaging middleware.\\
 
 \begin{figure}[H]
 \centering
