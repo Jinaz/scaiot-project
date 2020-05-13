@@ -6,6 +6,7 @@
 %
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{float}
 
 \begin{document}
 %
@@ -34,7 +35,7 @@ To accomplish this goal, we decided to use different sensors in a lecture room t
 
 
 \section{System Analysis}
-We will describe the system functionality using user stories in the following. The following user stories will be the main focus of our project.\\
+We will describe the system functionality using user stories in the following, where these user stories will be the main focus of our project.
 \begin{itemize}
 \item As a lecturer I want the room to automatically adjust light and curtains, so that my powerpoint is clearly visible.\\
 
@@ -44,8 +45,7 @@ We will describe the system functionality using user stories in the following. T
 \end{itemize}
 
 The following user stories will be additional features. Condition for implementing these will be the time we can invest into the project and the cost of the hardware.\\ 
-
-The following two user stories involve a door lock. As a physical door lock with electric mechanism is expensive we will stick to a simplification like sending an email or using a light to indicate the state of the door.\\
+These two user stories involve a door lock. As a physical door lock with electric mechanism is expensive we will stick to a simplification like sending an email or using a light to indicate the state of the door.
 \begin{itemize}
 \item As a caretaker of the building I want the doors to be locked after lecture hours to be able to guarantee the security of the building. \\
 
@@ -55,15 +55,16 @@ The following two user stories involve a door lock. As a physical door lock with
 \section{System Architecture Design}
 The user interface is realized on a laptop which communicates with a raspberry Pi where our system runs. The learning algorithm is also on the raspberry Pi. In the user interface light and air condition can also be manually adjusted.\\
 With weather forecast, temperature sensors and CO2 sensors we adjust the air conditioner and the windows. \\
-An infrared camera is connected as a sensor to recognize persons in the room. As there might be students discussing with a lecturer after the lecture, the room must not lock the doors. \\ 
+An infrared camera is connected as a sensor to recognize people in the room. As there might be students discussing with a lecturer after the lecture, the room must not lock the doors. \\
+Our Ubiquitous Layer wil process the data received from our sensors and combine it with calendar and weatherforecast data. Our planner service is the part where our ai planning come into play. It makes a decision based on the data given. The decision is forewarded to the actuators to carry out an action.\\
 
-Figure \ref{fig:SystemArchitecture} shows our system Architecture.
+Figure \ref{fig:SystemArchitecture} shows our system Architecture.\\
 
-\begin{figure}
-	\centering
-		\includegraphics[width=1.0\textwidth]{../img/SystemArchitecture.pdf}
-	\caption{SystemArchitecture}
-	\label{fig:SystemArchitecture}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{../img/IotDiagram.png}
+\caption{SystemArchitecture}
+\label{fig:SystemArchitecture}
 \end{figure}
 
 
