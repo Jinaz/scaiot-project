@@ -12,3 +12,7 @@ Dataformat is a str which can be converted to float. If empty it is a None objec
 
 Using csv or plain text files the data can be stored.
 
+At the moment: 10 samples are stored with timestamps
+
+Humidity, Temperature, Time[year,month,day,hour,minute,second]
+
