@@ -1,0 +1,57 @@
+\documentclass[DIN, pagenumber=false, fontsize=11pt, parskip=half]{scrartcl}
+
+\usepackage{ngerman}
+%\selectlanguage{english}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{float}
+
+% for matlab code
+% bw = blackwhite - optimized for print, otherwise source is colored
+%\usepackage[framed,numbered,bw]{mcode}
+
+% for other code
+\usepackage{listings}
+
+\setlength{\parindent}{0em}
+\usepackage{graphicx}
+
+% set section in CM
+\setkomafont{section}{\normalfont\bfseries\Large}
+
+%===================================
+\begin{document}           % typeset the header of the contribution
+
+
+Decisions:\\
+We will start with the gathering of data:\\
+\begin{itemize}
+\item weather data from online
+\item sensor data (Humidity and Temperature)
+\item need to order a light sensor
+\item need to order a CO2 sensor
+\end{itemize}
+
+Actuators will be decided next time. For now most likely mail information about windows/small leds symbolizing the lights in the room.\\
+TODO find out if our smart home plugs are compatible.\\
+
+%
+First, you mention a learning algorithm. What will this algorithm learn and why does the system need it? \\
+Learning algorithm will be moved to additional features for now.\\
+
+Second, what will the data processor do? I see a Plugwise processor. Do you have Plugwise plugs? \\
+Going around too expensive hardware by using some senosors we already have.\\
+
+Will the system store the data somewhere? \\
+The data will be stored in a data folder. The sampling rate must be tested yet. 
+
+Will the system use stored data? It seems that the PlannerService will send actions to the DataProcessor component. Is this intentional? \\
+need to discuss this topic once we start compiling everything together.
+
+Why not having a separate execution component? \\
+
+What about connecting the PlannerService with the user interface? \\
+The UI mus be able to communicate with the PI to get current samples.
+
+\end{document}
