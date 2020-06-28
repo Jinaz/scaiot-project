@@ -2,7 +2,7 @@
 We use the DHT11 and the Adafriut library
 
 # Coding
-The programming language will be python. 
+The programming language will be python.
 The code to take the data is according to the following tutorial:
 https://tutorials-raspberrypi.de/raspberry-pi-luftfeuchtigkeit-temperatur-messen-dht11-dht22/
 
