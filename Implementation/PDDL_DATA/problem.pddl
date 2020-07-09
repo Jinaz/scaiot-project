@@ -1,5 +1,5 @@
 (define (problem smrtroom) (:domain SMRTROOM)
-
+;this was our template problem
 (:objects
     r0 - room
     win1 - window
