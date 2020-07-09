@@ -4,3 +4,7 @@
 /doc/protocols/*.synctex.gz
 /doc/protocols/*.log
 /doc/protocols/*.aux
+
+**/*.pyc
+
+/Implementation/DataFiles/__pycache__/
