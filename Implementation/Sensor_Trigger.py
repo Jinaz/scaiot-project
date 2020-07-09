@@ -1,5 +1,5 @@
 import time
-import HTSensorFunctions.Constants as CTS
+import DataFiles.Constants as CTS
 
 def triggerDataStore():
     file = open(CTS.TRIGGERPATH, "w")

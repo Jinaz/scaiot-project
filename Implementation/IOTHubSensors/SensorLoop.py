@@ -1,37 +1,35 @@
 import time
-import os
-from datetime import datetime
 import random
+import numpy as np
+from numpy import savetxt
 
-import HTSensorFunctions.Constants as CTS
+import DataFiles.Constants as CTS
 #from HTSensorFunctions import HT_Sensor as hts
+
+
 def genDummy():
     humudity = random.uniform(0,100)
     temperature = random.uniform(-40, 40)
     return humudity, temperature
 
 def looper():
-    notfirst = False
-    filename = CTS.DATAFILENAME
-    new_filename = ""
 
-    datacontainer = [None] * 10
+    datacontainer = np.zeros((2,10))
     n = 0
     while True:
         #check for change
         file = open(CTS.TRIGGERPATH, "r")
         content = file.read(4)
         if content == "True":
-            if notfirst:
-                os.remove(filename)
-                print(filename, " Removed!")
-                filename = new_filename
-            filename = filename.format(n)
-            notfirst = True
-            file = open(filename, "w")
-            file.write(str(datacontainer))
-            file.close()
-            new_filename = CTS.DATAFILENAME
+
+            data0 = datacontainer[0,:]
+            data1 = datacontainer[1,:]
+
+            # save to csv file
+            savetxt('DATA/hum.csv', data0, delimiter=',')
+            savetxt('DATA/temp.csv', data1, delimiter=',')
+
+            #new_filename = CTS.DATAFILENAME
             print("data written")
             time.sleep(1)
         #uncomment to use sensor data
@@ -39,7 +37,12 @@ def looper():
 
         #dummy data
         hum,temp = genDummy()
-        datacontainer[n] = (hum,temp,datetime.now().strftime("%Y%m%d%H%M%S"))
+
+
+
+        datacontainer[0][n] = hum
+        datacontainer[1][n] = temp
+        #,datetime.now().strftime("%Y%m%d%H%M%S"))
         n+=1
         time.sleep(1)
 
@@ -48,4 +51,5 @@ def looper():
             n = 0
             print(datacontainer)
 
-looper()
+def main_On_Py():
+    looper()
