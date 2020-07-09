@@ -9,7 +9,7 @@ import RoomModel
 import PddlFiles.pddlWriter as writer
 
 if __name__ == "__main__":
-    # dg.generateDummy()
+
     system = "gathering"
     # print(sys.argv)
     if len(sys.argv) == 2 and sys.argv[1] == "calc":
@@ -22,24 +22,26 @@ if __name__ == "__main__":
         room = RoomModel.initRoom()
 
         while True:
-            #TODO get time and weather
+            # TODO get time and weather
             weather = 0
 
-            #TODO set the flags depending on current time and calendar
+            # TODO set the flags depending on current time and calendar
             crtime = 0
             inlecture = True
             betweenLectures = False
             afterLecture = False
             firstLecture = False
             roomIsEmpty = False
+            #print(room.presenting)
 
-            writer.write_problem(room, con.TEST_PROBLEM, 24, 45, 30, room.heater.status, room.cooler.status,room.light.status,
+            writer.write_problem(room, con.TEST_PROBLEM, 30, 30, 30, room.heater.status, room.cooler.status,
+                                 room.light.status,
                                  room.window.status, room.door.status, room.curtain.status, room.presenting,
-                                 inlecture, betweenLectures, afterLecture, firstLecture,roomIsEmpty, 0)
+                                 inlecture, betweenLectures, afterLecture, firstLecture, roomIsEmpty, 0)
             time.sleep(2)
 
             actions = pl.pddlLoop()
 
-            decider.decide(actions,room)
+            decider.decide(actions, room)
 
             time.sleep(10)

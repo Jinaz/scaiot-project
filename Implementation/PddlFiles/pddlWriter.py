@@ -46,13 +46,13 @@ def write_problem(room, filename=ss.TEST_PROBLEM, wanted_temp=24, wanted_lightle
     prop6 = "(has_curtain {} {})".format(roomname, curtainname)
     prop7 = "(not (output-done {}))".format(roomname)
 
-    present = "(presentingInRoom {})".format(roomname)
-    if not presentation:
-        present = "(notpresentingInRoom {})".format(roomname)
+    present = "(notpresentingInRoom {})".format(roomname)
+    if presentation:
+        present = "(presentingInRoom {})".format(roomname)
 
     custat = "(are_up {})".format(curtainname)
     if curtainstatus == 1:
-        custat = "(are_up {})".format(curtainname)
+        custat = "(are_down {})".format(curtainname)
 
     lightstat = "(are_off {})".format(lightname)
     if lightstatus == 1:
@@ -86,7 +86,7 @@ def write_problem(room, filename=ss.TEST_PROBLEM, wanted_temp=24, wanted_lightle
     wantedLL = "(=(wantedLightlevel {}) {})".format(roomname, wanted_lightlevel)
     wantedLLPPT = ""
     if wanted_lightlevel - 10 > 0:
-        wantedLLPPT = "(=(wantedLightlevelPPT {}) {})".format(roomname, wanted_lightlevel - 10)
+        wantedLLPPT = "(=(wantedLightlevelPPT {}) {})".format(roomname, (wanted_lightlevel - 10))
     else:
         wantedLLPPT = "(=(wantedLightlevelPPT {}) {})".format(roomname, wanted_lightlevel)
 

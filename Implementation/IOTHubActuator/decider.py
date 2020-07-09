@@ -5,6 +5,7 @@ def decide(actions,room):
     for action in actions:
         if action == 'heater_On':
             ex.heater_On()
+            room.heater.status = 1
         if action == 'heater_Off':
             ex.heater_Off()
         if action == 'cooler_On':
@@ -31,6 +32,7 @@ def decide(actions,room):
             ex.curtain_up()
         if action ==  'curtain_down':
             ex.curtain_down()
+            room.curtain.status = 1
         if action ==  'unlockRoom':
             ex.unlockRoom()
         if action ==  'lockRoom':

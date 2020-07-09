@@ -27,23 +27,23 @@
     
     (not (output-done r0))
     
-    (notpresentingInRoom r0)
+    (presentingInRoom r0)
     
-    (are_up c0)
+    (are_down c0)
     (are_off l0)
     (are_closed w0)
     (is_unlocked d0)
     (is_off_heat h0)
     (is_off_cool c0)
     
-    (= (temperature_wanted r0) 24)
-    (= (actual_temp r0) -11.196819220738696)
+    (= (temperature_wanted r0) 30)
+    (= (actual_temp r0) 30.0)
     (= (outside_temp) 30)
     (= (outtemp) 0)
     
-    (=(actual_lightlevel r0) 46.5)
-    (=(wantedLightlevel r0) 45)
-    (=(wantedLightlevelPPT r0) 35)
+    (=(actual_lightlevel r0) 30.0)
+    (=(wantedLightlevel r0) 30)
+    (=(wantedLightlevelPPT r0) 20)
 
 )
 

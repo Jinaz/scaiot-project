@@ -1,5 +1,5 @@
 class Room():
-    def __init__(self, name, window, light, heater, cooler, curtain, door,presenting=False):
+    def __init__(self, name, window, light, heater, cooler, curtain, door,presenting=True):
         self.name = name
         self.window = window
         self.light = light

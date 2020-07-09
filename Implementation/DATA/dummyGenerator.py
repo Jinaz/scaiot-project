@@ -4,7 +4,7 @@ from numpy import savetxt
 
 def genDummyTemp():
     # define data
-    data = asarray([[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])
+    data = asarray([[30,30,30,30,30,30,30,30,30,30]])
     # save to csv file
     savetxt('temp.csv', data, delimiter=',')
 
@@ -16,7 +16,7 @@ def genDummyHum():
 
 def genDummyLight():
     # define data
-    data = asarray([[15, 10, 20, 30, 40, 50, 60, 70, 80, 90]])
+    data = asarray([[30,30,30,30,30,30,30,30,30,30]])
     # save to csv file
     savetxt('light.csv', data, delimiter=',')
 
@@ -34,3 +34,4 @@ def genAllDummy():
 
 def generateDummy():
     genAllDummy()
+#genAllDummy()

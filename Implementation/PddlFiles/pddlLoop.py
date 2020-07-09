@@ -11,14 +11,18 @@ def getPlan():
 
     resp = requests.post('http://solver.planning.domains/solve',
                          verify=False, json=data).json()
-    # print(resp)
+    print(resp)
+    try:
+        with open(names.OUTPUTFILE, 'w') as f:
+            f.write('\n'.join([act['name'] for act in resp['result']['plan']]))
 
-    with open(names.OUTPUTFILE, 'w') as f:
-        f.write('\n'.join([act['name'] for act in resp['result']['plan']]))
+        response = [act['name'] for act in resp['result']['plan']]
+        # print(response)
 
-    response = [act['name'] for act in resp['result']['plan']]
-    # print(response)
-    return response
+        return response
+    except:
+        print("no plan found")
+        return []
 
 
 def pddlLoop():

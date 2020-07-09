@@ -17,5 +17,6 @@ def readData():
                 mostRecentvalue = np.mean(data)
         data_out.append(mostRecentvalue)
         i+=1
+    #print(data_out)
     return data_out
 
