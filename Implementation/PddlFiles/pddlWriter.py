@@ -6,6 +6,8 @@ def write_problem(filename= ss.TEST_PROBLEM,wanted_temp=24,wanted_lightlevel=30,
                   presentation=False,inlecture=True,betweenLectures=False,
                   afterLecture=False,firstLecture=False,weather=0):
     humidity, temperature, lightlevel, ir_value = dg.readData()
+
+
     f = open(filename, "w")
     f.write(ss.PDDLCONTENT)
 

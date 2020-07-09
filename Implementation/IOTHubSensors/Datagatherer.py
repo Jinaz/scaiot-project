@@ -8,7 +8,7 @@ def readData():
     data_out = []
     for file in cs.DATAFILENAMES:
         mostRecentvalue = None
-        with open(file, newline='') as csvfile:
+        with open(file) as csvfile:
             dataReader = csv.reader(csvfile, delimiter=' ', quotechar='|')
             for row in dataReader:
                 data = re.split(',+',row[0])
