@@ -15,6 +15,63 @@ NUMBEROFSAMPLES = 10
 
 TEST_PROBLEM = 'PDDL_DATA/test_problem.pddl'
 
+PDDLTemplate = """(define (problem smrtroom) (:domain SMRTROOM)
+;this was our template problem
+(:objects
+    {} - room
+    {} - window
+    outside - outside
+    {} - cooler
+    {} - heater
+    {} - door
+    {} - light 
+    {} - curtain
+)
+
+(:init 
+    {}
+    
+    {}
+    
+    {}
+    
+    {}
+    {}
+    {}
+    {}
+    {}
+    {}
+    
+    {}
+    
+    {}
+    
+    {}
+    {}
+    {}
+    {}
+    {}
+    {}
+    
+    {}
+    {}
+    {}
+    {}
+    
+    {}
+    {}
+    {}
+
+)
+
+(:goal (and
+        {}
+    )
+)
+
+)"""
+
+
 PDDLCONTENT = """(define (problem smrtroom) (:domain SMRTROOM)
 
 (:objects

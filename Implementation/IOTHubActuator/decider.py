@@ -1,7 +1,7 @@
 from IOTHubActuator import excutor as ex
 
 
-def decide(actions):
+def decide(actions,room):
     for action in actions:
         if action == 'heater_On':
             ex.heater_On()
