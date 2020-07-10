@@ -56,14 +56,14 @@ if __name__ == "__main__":
             betweenLectures = False
             afterLecture = False
             firstLecture = False
-            roomIsEmpty = False
+
             #print(room.presenting)
             outtemp ,weather = wrp.readurl()
 
             writer.write_problem(room, con.TEST_PROBLEM, 30, 30, outtemp, room.heater.status, room.cooler.status,
                                  room.light.status,
                                  room.window.status, room.door.status, room.curtain.status, room.presenting,
-                                 inlecture, betweenLectures, afterLecture, firstLecture, roomIsEmpty, weather)
+                                 inlecture, betweenLectures, afterLecture, firstLecture, weather)
             time.sleep(2)
 
             actions = pl.pddlLoop()
