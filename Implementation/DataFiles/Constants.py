@@ -1,5 +1,9 @@
 TRIGGERPATH = "DataFiles/trigger.llz"
 
+DESIRED_LIGHTLEVEL = 5
+DESIRED_TEMP = 24
+LIGHTRESIST = 10000
+
 DOMAIN = 'PDDL_DATA/domain.pddl'
 PROBLEM = 'PDDL_DATA/problem.pddl'
 OUTPUTFILE = 'PDDL_DATA/plan.plan'

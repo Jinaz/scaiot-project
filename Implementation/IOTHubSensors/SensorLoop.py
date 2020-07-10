@@ -4,7 +4,7 @@ import numpy as np
 from numpy import savetxt
 
 import DataFiles.Constants as CTS
-#from HTSensorFunctions import HT_Sensor as hts
+from HTSensorFunctions import HT_Sensor as hts
 import LightSensorFunctios.L_Sensor as ls
 
 

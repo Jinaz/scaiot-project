@@ -9,7 +9,7 @@ def openWindow():
     p = GPIO.PWM(servoPIN, 50)  # GPIO 17 als PWM mit 50Hz
     p.start(2.5)  # Initialisierung
 
-    p.ChangeDutyCycle(10)
+    p.ChangeDutyCycle(7.5)
     time.sleep(0.5)
 
     p.stop()
@@ -22,7 +22,7 @@ def closeWindow():
     GPIO.setup(servoPIN, GPIO.OUT)
 
     p = GPIO.PWM(servoPIN, 50)  # GPIO 17 als PWM mit 50Hz
-    p.start(10)  # Initialisierung
+    p.start(7.5)  # Initialisierung
 
     p.ChangeDutyCycle(2.5)
     time.sleep(0.5)

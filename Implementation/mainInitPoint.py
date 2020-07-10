@@ -9,6 +9,7 @@ import WeatherForecast.weatherReaderPy as wrp
 import RoomModel
 import PddlFiles.pddlWriter as writer
 from pathlib import Path
+import InformActuator.sendEmail as se
 
 if __name__ == "__main__":
 
@@ -26,6 +27,7 @@ if __name__ == "__main__":
         if roomfile.is_file():
             # file exists
             import json
+
             with open(con.ROOMJSON) as json_file:
                 data = json.load(json_file)
                 room.curtain.name = data["curtain"]["name"]
@@ -47,7 +49,6 @@ if __name__ == "__main__":
                 room.window.status = data["window"]["status"]
                 print("data loaded")
 
-
         while True:
 
             # TODO set the flags depending on current time and calendar
@@ -57,17 +58,18 @@ if __name__ == "__main__":
             afterLecture = False
             firstLecture = False
 
-            #print(room.presenting)
-            outtemp ,weather = wrp.readurl()
+            # print(room.presenting)
+            outtemp, weather = wrp.readurl()
 
-            writer.write_problem(room, con.TEST_PROBLEM, 30, 400, outtemp, room.heater.status, room.cooler.status,
+            writer.write_problem(room, con.TEST_PROBLEM, con.DESIRED_TEMP, con.DESIRED_LIGHTLEVEL, outtemp,
+                                 room.heater.status, room.cooler.status,
                                  room.light.status,
                                  room.window.status, room.door.status, room.curtain.status, room.presenting,
                                  inlecture, betweenLectures, afterLecture, firstLecture, weather)
             time.sleep(2)
 
             actions = pl.pddlLoop()
-
-            decider.generate_content(actions, room)
-
+            if len(actions) > 0:
+                emailcontent = decider.generate_content(actions, room)
+                se.sendEmail("noreply.scaiot.project@gmail.com", emailcontent)
             time.sleep(10)

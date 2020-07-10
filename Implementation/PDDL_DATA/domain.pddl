@@ -307,11 +307,11 @@
                     (or
                         (and
                             (presentingInRoom ?r)
-                            (>(wantedLightlevelPPT ?r) (actual_lightlevel ?r))
+                            (<(wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         )
                         (and
                             (notpresentingInRoom ?r)
-                            (>(wantedLightlevel ?r) (actual_lightlevel ?r))
+                            (<(wantedLightlevel ?r) (actual_lightlevel ?r))
                         )
                     )    
         )
@@ -333,11 +333,11 @@
                     (or
                         (and
                             (notpresentingInRoom ?r)
-                            (< (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
+                            (> (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         )
                         (and
                             (presentingInRoom ?r)
-                            (< (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
+                            (> (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         )
                     )
         )
@@ -359,11 +359,11 @@
                     (or
                         (and
                             (presentingInRoom ?r)
-                            (>(wantedLightlevelPPT ?r) (actual_lightlevel ?r))
+                            (<(wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         )
                         (and
                             (notpresentingInRoom ?r)
-                            (>(wantedLightlevel ?r) (actual_lightlevel ?r))
+                            (<(wantedLightlevel ?r) (actual_lightlevel ?r))
                         )
                     )    
         )
@@ -385,11 +385,11 @@
                     (or
                         (and
                             (notpresentingInRoom ?r)
-                            (< (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
+                            (> (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         )
                         (and
                             (presentingInRoom ?r)
-                            (< (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
+                            (> (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         )
                     )
                     )
@@ -416,11 +416,11 @@
                     (are_down ?cu)
                     (or
                         (and
-                        (> (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
+                        (< (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         (presentingInRoom ?r)
                         )
                         (and
-                        (> (wantedLightlevel ?r) (actual_lightlevel ?r))
+                        (< (wantedLightlevel ?r) (actual_lightlevel ?r))
                         (notpresentingInRoom ?r)
                         )
                         
@@ -440,11 +440,11 @@
                     (are_up ?cu)
                     (or
                         (and
-                        (< (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
+                        (> (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         (presentingInRoom ?r)
                         )
                         (and
-                        (< (wantedLightlevel ?r) (actual_lightlevel ?r))
+                        (> (wantedLightlevel ?r) (actual_lightlevel ?r))
                         (notpresentingInRoom ?r)
                         )
                     )

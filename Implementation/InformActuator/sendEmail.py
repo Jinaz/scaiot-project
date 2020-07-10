@@ -23,7 +23,7 @@ def sendEmail(receiver_email, content, subject="Information from scaiot project"
         server.sendmail(sender_email, receiver_email, message.as_string())
 
 
-if __name__ == "__main__":
-    receiver_email = "noreply.scaiot.project@gmail.com"
-
-    sendEmail(receiver_email, "1. asdgasdg\n" + "2. asdgasdg\n")
+# if __name__ == "__main__":
+#    receiver_email = "noreply.scaiot.project@gmail.com"
+#
+#    sendEmail(receiver_email, "1. asdgasdg\n" + "2. asdgasdg\n")

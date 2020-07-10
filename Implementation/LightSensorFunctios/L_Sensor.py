@@ -2,6 +2,7 @@
 
 import RPi.GPIO as GPIO
 import time
+import DataFiles.Constants as con
 
 GPIO.setmode(GPIO.BOARD)
 
@@ -23,6 +24,8 @@ def rc_time(pin_to_circuit=7):
         count += 1
 
     GPIO.cleanup()
+
+    ct = round(count / con.LIGHTRESIST)
 
     return count
 
