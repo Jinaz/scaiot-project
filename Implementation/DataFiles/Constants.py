@@ -3,6 +3,7 @@ TRIGGERPATH = "DataFiles/trigger.llz"
 DOMAIN = 'PDDL_DATA/domain.pddl'
 PROBLEM = 'PDDL_DATA/problem.pddl'
 OUTPUTFILE = 'PDDL_DATA/plan.plan'
+ROOMJSON = 'DATA/room.json'
 
 ACTIONS = ['heater_On', 'heater_Off', 'cooler_On', 'cooler_Off'
     , 'open_Windows', 'close_Windows', 'nothing', 'refresh_air'

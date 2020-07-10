@@ -12,7 +12,7 @@
 )
 
 (:init 
-    (isSunny outside)
+    (isCloudy outside)
     
     (not(roomEmpty r0))
     
@@ -37,11 +37,11 @@
     (is_off_cool c0)
     
     (= (temperature_wanted r0) 30)
-    (= (actual_temp r0) 30.0)
-    (= (outside_temp) 30)
+    (= (actual_temp r0) 30)
+    (= (outside_temp) 26)
     (= (outtemp) 0)
     
-    (=(actual_lightlevel r0) 30.0)
+    (=(actual_lightlevel r0) 30)
     (=(wantedLightlevel r0) 30)
     (=(wantedLightlevelPPT r0) 20)
 

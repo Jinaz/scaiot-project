@@ -5,8 +5,10 @@ import time
 import sys
 import DataFiles.Constants as con
 import DATA.dummyGenerator as dg
+import WeatherForecast.weatherReaderPy as wrp
 import RoomModel
 import PddlFiles.pddlWriter as writer
+from pathlib import Path
 
 if __name__ == "__main__":
 
@@ -20,10 +22,33 @@ if __name__ == "__main__":
     elif system == "calculating":
 
         room = RoomModel.initRoom()
+        roomfile = Path(con.ROOMJSON)
+        if roomfile.is_file():
+            # file exists
+            import json
+            with open(con.ROOMJSON) as json_file:
+                data = json.load(json_file)
+                room.curtain.name = data["curtain"]["name"]
+                room.curtain.status = data["curtain"]["status"]
+
+                room.heater.name = data["heater"]["name"]
+                room.heater.status = data["heater"]["status"]
+
+                room.light.name = data["light"]["name"]
+                room.light.status = data["light"]["status"]
+
+                room.door.name = data["door"]["name"]
+                room.door.status = data["door"]["status"]
+
+                room.cooler.name = data["cooler"]["name"]
+                room.cooler.status = data["cooler"]["status"]
+
+                room.window.name = data["window"]["name"]
+                room.window.status = data["window"]["status"]
+                print("data loaded")
+
 
         while True:
-            # TODO get time and weather
-            weather = 0
 
             # TODO set the flags depending on current time and calendar
             crtime = 0
@@ -31,13 +56,14 @@ if __name__ == "__main__":
             betweenLectures = False
             afterLecture = False
             firstLecture = False
-            roomIsEmpty = False
-            #print(room.presenting)
 
-            writer.write_problem(room, con.TEST_PROBLEM, 30, 30, 30, room.heater.status, room.cooler.status,
+            #print(room.presenting)
+            outtemp ,weather = wrp.readurl()
+
+            writer.write_problem(room, con.TEST_PROBLEM, 30, 30, outtemp, room.heater.status, room.cooler.status,
                                  room.light.status,
                                  room.window.status, room.door.status, room.curtain.status, room.presenting,
-                                 inlecture, betweenLectures, afterLecture, firstLecture, roomIsEmpty, 0)
+                                 inlecture, betweenLectures, afterLecture, firstLecture, weather)
             time.sleep(2)
 
             actions = pl.pddlLoop()
