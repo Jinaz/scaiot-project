@@ -25,11 +25,12 @@ def looper():
 
     datacontainer = np.zeros((4,10))
     n = 0
+    content = False
     while True:
         #check for change
-        file = open(CTS.TRIGGERPATH, "r")
-        content = file.read(4)
-        if content == "True":
+        #file = open(CTS.TRIGGERPATH, "r")
+
+        if content:
 
             data0 = datacontainer[0,:]
             data1 = datacontainer[1,:]
@@ -44,7 +45,7 @@ def looper():
 
             #new_filename = CTS.DATAFILENAME
             print("data written")
-            time.sleep(1)
+            #time.sleep(1)
         #uncomment to use sensor data
         #hum, temp = hts.getHTData()
         #light = ls.getLightData()
@@ -60,11 +61,11 @@ def looper():
         datacontainer[3][n] = ir
         #,datetime.now().strftime("%Y%m%d%H%M%S"))
         n+=1
-        time.sleep(1)
+        time.sleep(10)
 
-        #every 10 reset
         if n % 10 == 0:
             n = 0
+            content = True
             print(datacontainer)
 
 def main_On_Py():

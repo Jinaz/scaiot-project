@@ -14,7 +14,7 @@
 (:init 
     (isCloudy outside)
     
-    (not(roomEmpty r0))
+    (roomEmpty r0)
     
     (inLectureTime r0)
     
@@ -38,7 +38,7 @@
     
     (= (temperature_wanted r0) 30)
     (= (actual_temp r0) 30)
-    (= (outside_temp) 26)
+    (= (outside_temp) 24)
     (= (outtemp) 0)
     
     (=(actual_lightlevel r0) 30)

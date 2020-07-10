@@ -6,3 +6,5 @@
 /doc/protocols/*.aux
 
 **/*.pyc
+
+/Implementation/RPi/
