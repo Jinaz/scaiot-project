@@ -30,6 +30,40 @@ class Room():
     def getDoor(self):
         return self.door
 
+    def saveConfig(self):
+        import json
+        import DataFiles.Constants as cs
+
+        jsonstr = "{"
+
+        jsonstr += "\"curtain\": "
+        jsonstr += json.dumps(self.curtain.__dict__)
+        jsonstr+= ","
+
+        jsonstr += "\"heater\": "
+        jsonstr += json.dumps(self.heater.__dict__)
+        jsonstr += ","
+
+        jsonstr += "\"light\": "
+        jsonstr += json.dumps(self.light.__dict__)
+        jsonstr += ","
+
+        jsonstr += "\"door\": "
+        jsonstr += json.dumps(self.door.__dict__)
+        jsonstr += ","
+
+        jsonstr += "\"cooler\": "
+        jsonstr += json.dumps(self.cooler.__dict__)
+        jsonstr += ","
+
+        jsonstr += "\"window\": "
+        jsonstr += json.dumps(self.window.__dict__)
+        jsonstr += "}"
+
+        text_file = open(cs.ROOMJSON, "w")
+        text_file.write(jsonstr)
+        text_file.close()
+
 
 class Window():
     def __init__(self, name, status=0):
