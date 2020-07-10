@@ -1,83 +1,83 @@
 def dimlightsUp():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def heater_On():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def heater_Off():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def cooler_On():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def cooler_Off():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def open_Windows():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def close_Windows():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def nothing():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def refresh_air():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def dimLightsup():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def dimLightsdown():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def fullLights():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def lightsOff():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def curtain_up():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def curtain_down():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def unlockRoom():
-    print("action triggered")
+    print("manager informed")
     pass
 
 
 def lockRoom():
-    print("action triggered")
+    print("manager informed")
     pass

@@ -42,6 +42,6 @@ if __name__ == "__main__":
 
             actions = pl.pddlLoop()
 
-            decider.decide(actions, room)
+            decider.generate_content(actions, room)
 
             time.sleep(10)
