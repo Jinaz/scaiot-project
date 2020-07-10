@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 def openWindow():
-    servoPIN = 23
+    servoPIN = 27
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(servoPIN, GPIO.OUT)
 
@@ -17,7 +17,7 @@ def openWindow():
 
 
 def closeWindow():
-    servoPIN = 23
+    servoPIN = 27
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(servoPIN, GPIO.OUT)
 

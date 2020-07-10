@@ -8,18 +8,18 @@ def readHumTemp(timeSeconds):
 
     #define sensor and the pin used to get data
     sensor = dht.DHT11
-    pin = 10
+    gpio = 17
 
     #log for timeSeconds samples
     for i in range(timeSeconds):
-        humidity, temperature = dht.read_retry(sensor, pin)
+        humidity, temperature = dht.read_retry(sensor, gpio)
         time.sleep(1)
         hum.append(humidity)
         temp.append(temperature)
 
     return hum, temp
 
-def getHTData(sensor = dht.DHT11,pin = 10):
-    humidity, temperature = dht.read_retry(sensor, pin)
+def getHTData(sensor = dht.DHT11,gpio = 17):
+    humidity, temperature = dht.read_retry(sensor, gpio)
     return humidity,temperature
 

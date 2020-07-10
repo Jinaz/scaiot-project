@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 def openDoor():
-    servoPIN = 22
+    servoPIN = 24
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(servoPIN, GPIO.OUT)
 
@@ -17,7 +17,7 @@ def openDoor():
 
 
 def closeDoor():
-    servoPIN = 22
+    servoPIN = 24
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(servoPIN, GPIO.OUT)
 

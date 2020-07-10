@@ -1,7 +1,7 @@
 from IOTHubSensors import Datagatherer as dg
 import DataFiles.Constants as ss
 
-def write_problem(room, filename=ss.TEST_PROBLEM, wanted_temp=24, wanted_lightlevel=30,
+def write_problem(room, filename=ss.TEST_PROBLEM, wanted_temp=24, wanted_lightlevel=400,
                   outside_temp=30, heaterstatus=0, coolerstatus=0, lightstatus=0,
                   windowstatus=0, doorstatus=0, curtainstatus=0,
                   presentation=False, inlecture=True, betweenLectures=False,
@@ -89,8 +89,8 @@ def write_problem(room, filename=ss.TEST_PROBLEM, wanted_temp=24, wanted_lightle
     insidelightlevel = "(=(actual_lightlevel {}) {})".format(roomname, lightlevel)
     wantedLL = "(=(wantedLightlevel {}) {})".format(roomname, wanted_lightlevel)
     wantedLLPPT = ""
-    if wanted_lightlevel - 10 > 0:
-        wantedLLPPT = "(=(wantedLightlevelPPT {}) {})".format(roomname, (wanted_lightlevel - 10))
+    if wanted_lightlevel + 100 < 1000:
+        wantedLLPPT = "(=(wantedLightlevelPPT {}) {})".format(roomname, (wanted_lightlevel +100))
     else:
         wantedLLPPT = "(=(wantedLightlevelPPT {}) {})".format(roomname, wanted_lightlevel)
 
