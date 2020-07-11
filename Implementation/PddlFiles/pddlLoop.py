@@ -26,11 +26,10 @@ def getPlan():
 
 
 def pddlLoop():
-    # TODO move this code to the main loop
 
     resp = getPlan()
 
-    time.sleep(2)
+    #time.sleep(2)
     actions = reader.readAction(resp)
 
     return actions

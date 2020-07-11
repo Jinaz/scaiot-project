@@ -1,16 +1,17 @@
-from IOTHubSensors import Datagatherer as dg
+
 import DataFiles.Constants as ss
 
 def write_problem(room, filename=ss.TEST_PROBLEM, wanted_temp=24, wanted_lightlevel=400,
                   outside_temp=30, heaterstatus=0, coolerstatus=0, lightstatus=0,
                   windowstatus=0, doorstatus=0, curtainstatus=0,
                   presentation=False, inlecture=True, betweenLectures=False,
-                  afterLecture=False, firstLecture=False, weather=0):
-    humidity, temperature, lightlevel, ir_value = dg.readData()
-    temperature = int(round(temperature))
-    lightlevel = int(round(lightlevel))
+                  afterLecture=False, firstLecture=False, weather=0, tem = -1, hum = -1, lightl = -1, ir_val = -1):
+
+
+    temperature = int(round(tem))
+    lightlevel = int(round(lightl))
     roomIsEmpty = False
-    if ir_value < 50:
+    if ir_val < 50:
         roomIsEmpty = True
 
     roomname = room.name

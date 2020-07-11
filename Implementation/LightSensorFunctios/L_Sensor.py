@@ -4,10 +4,10 @@ import RPi.GPIO as GPIO
 import time
 import DataFiles.Constants as con
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
-def rc_time(pin_to_circuit=7):
-    GPIO.setmode(GPIO.BOARD)
+def rc_time(pin_to_circuit=4):
+    GPIO.setmode(GPIO.BCM)
 
     count = 0
 
@@ -23,7 +23,7 @@ def rc_time(pin_to_circuit=7):
     while (GPIO.input(pin_to_circuit) == GPIO.LOW):
         count += 1
 
-    GPIO.cleanup()
+    #GPIO.cleanup()
 
     ct = round(count / con.LIGHTRESIST)
 

@@ -13,7 +13,7 @@ def openDoor():
     time.sleep(0.5)
 
     p.stop()
-    GPIO.cleanup()
+    #GPIO.cleanup()
 
 
 def closeDoor():
@@ -28,4 +28,4 @@ def closeDoor():
     time.sleep(0.5)
 
     p.stop()
-    GPIO.cleanup()
+    #GPIO.cleanup()

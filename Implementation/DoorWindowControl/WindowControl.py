@@ -13,7 +13,7 @@ def openWindow():
     time.sleep(0.5)
 
     p.stop()
-    GPIO.cleanup()
+    #GPIO.cleanup()
 
 
 def closeWindow():
@@ -28,4 +28,4 @@ def closeWindow():
     time.sleep(0.5)
 
     p.stop()
-    GPIO.cleanup()
+    #GPIO.cleanup()

@@ -1,8 +1,3 @@
-def dimlightsUp():
-    print("manager informed")
-    pass
-
-
 def heater_On():
     print("manager informed")
     pass

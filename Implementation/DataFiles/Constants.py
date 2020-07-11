@@ -1,4 +1,4 @@
-TRIGGERPATH = "DataFiles/trigger.llz"
+TRIGGERPATH = "DATA/trigger.llz"
 
 DESIRED_LIGHTLEVEL = 5
 DESIRED_TEMP = 24

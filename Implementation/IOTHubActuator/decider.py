@@ -38,7 +38,7 @@ def generate_content(actions, room):
             room.window.status = 1
         if action == 'dimLightsup':
             content += str(count) + ". " + "please turn up the lights a little\n"
-            ex.dimlightsUp()
+            ex.dimLightsup()
             room.light.status = 1
         if action ==  'dimLightsdown':
             content += str(count) + ". " + "please dim the lights\n"

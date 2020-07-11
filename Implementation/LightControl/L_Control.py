@@ -1,24 +1,47 @@
 import RPi.GPIO as GPIO
 import time
 
+all_pins = [5, 6, 13]
+mid_pins = [5, 13]
+
+
 def signal(ll):
-    pin = 16
+    GPIO.setmode(GPIO.BCM)
+    for pin in all_pins:
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.output(pin, GPIO.LOW)
+
     if ll == "off":
-        pin = 29
+        for pin in all_pins:
+            GPIO.output(pin, GPIO.LOW)
     if ll == "mid":
-        pin = 31
+        for pin in all_pins:
+            GPIO.output(pin, GPIO.LOW)
+
+        for pin in mid_pins:
+            GPIO.output(pin, GPIO.HIGH)
     if ll == "on":
-        pin = 33
+        for pin in all_pins:
+            GPIO.output(pin, GPIO.HIGH)
 
-    GPIO.setmode(GPIO.BOARD)
 
-    GPIO.setup(pin, GPIO.OUT)
-    GPIO.output(pin, GPIO.LOW)
+def initial():
+    GPIO.setmode(GPIO.BCM)
+    for pin in all_pins:
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.output(pin, GPIO.LOW)
 
-    GPIO.output(pin, GPIO.HIGH)
-    time.sleep(5)
-    GPIO.output(pin,GPIO.LOW)
-    time.sleep(1)
 
+def final():
     GPIO.cleanup()
 
+# initial()
+# signal('on')
+# time.sleep(3)
+# signal('mid')
+# time.sleep(3)
+# signal('off')
+# time.sleep(3)
+# signal('mid')
+# time.sleep(3)
+# final()
