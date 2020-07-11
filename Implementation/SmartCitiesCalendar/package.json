@@ -1,0 +1,17 @@
+{
+    "name": "calendar-service",
+    "version": "1.0.0",
+    "description": "retrieving events for a room",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "ZhixianLi",
+    "license": "MIT",
+    "dependencies": {
+        "compression": "^1.7.4",
+        "express": "^4.17.1",
+        "googleapis": "^39.2.0"
+    }
+}
