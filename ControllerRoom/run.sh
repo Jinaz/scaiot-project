@@ -22,49 +22,49 @@ while true; do
     echo "exit"
   fi
   if [ "$x" = "roomstatus" ]; then
-    python3 OutsideController roomstatus
+    python3 ~/Desktop/ControllerRoom/OutsideController.py roomstatus
   fi
 
   if [ "$x" = "heater_on" ]; then
-    python3 OutsideController heater_on
+    python3 ~/Desktop/ControllerRoom/OutsideController.py heater_on
   fi
 
   if [ "$x" = "heater_off" ]; then
-    python3 OutsideController heater_off
+    python3 ~/Desktop/ControllerRoom/OutsideController.py heater_off
   fi
 
   if [ "$x" = "ac_on" ]; then
-    python3 OutsideController cooler_on
+    python3 ~/Desktop/ControllerRoom/OutsideController.py cooler_on
   fi
   if [ "$x" = "ac_off" ]; then
-    python3 OutsideController cooler_off
+    python3 ~/Desktop/ControllerRoom/OutsideController.py cooler_off
   fi
   if [ "$x" = "lights_off" ]; then
-    python3 OutsideController light_off
+    python3 ~/Desktop/ControllerRoom/OutsideController.py light_off
   fi
   if [ "$x" = "lights_dim" ]; then
-    python3 OutsideController light_dom
+    python3 ~/Desktop/ControllerRoom/OutsideController.py light_dom
   fi
   if [ "$x" = "lights_on" ]; then
-    python3 OutsideController light_on
+    python3 ~/Desktop/ControllerRoom/OutsideController.py light_on
   fi
   if [ "$x" = "door_lock" ]; then
-    python3 OutsideController lock_door
+    python3 ~/Desktop/ControllerRoom/OutsideController.py lock_door
   fi
   if [ "$x" = "door_unlock" ]; then
-    python3 OutsideController unlock_door
+    python3 ~/Desktop/ControllerRoom/OutsideController.py unlock_door
   fi
   if [ "$x" = "window_open" ]; then
-    python3 OutsideController window_open
+    python3 ~/Desktop/ControllerRoom/OutsideController.py window_open
   fi
   if [ "$x" = "window_close" ]; then
-    python3 OutsideController window_close
+    python3 ~/Desktop/ControllerRoom/OutsideController.py window_close
   fi
   if [ "$x" = "curtain_open" ]; then
-    python3 OutsideController curtain_up
+    python3 ~/Desktop/ControllerRoom/OutsideController.py curtain_up
   fi
   if [ "$x" = "curtain_close" ]; then
-    python3 OutsideController curtain_down
+    python3 ~/Desktop/ControllerRoom/OutsideController.py curtain_down
   fi
 
   if [ "$x" = "exit" ]; then
