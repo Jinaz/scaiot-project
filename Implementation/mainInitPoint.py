@@ -85,6 +85,12 @@ if __name__ == "__main__":
         datacontainer[2][loopcount] = lightlevel
         datacontainer[3][loopcount] = ir_value
 
+
+        #def write_problem(room, filename=ss.TEST_PROBLEM, wanted_temp=24, wanted_lightlevel=400,
+                          #outside_temp=30, heaterstatus=0, coolerstatus=0, lightstatus=0,
+                          #windowstatus=0, doorstatus=0, curtainstatus=0,
+                          #presentation=False, inlecture=True, betweenLectures=False,
+                          #afterLecture=False, firstLecture=False, weather=0, tem=-1, hum=-1, lightl=-1, ir_val=-1):
         writer.write_problem(room, con.TEST_PROBLEM, con.DESIRED_TEMP, con.DESIRED_LIGHTLEVEL, outtemp,
                              room.heater.status, room.cooler.status,
                              room.light.status,
@@ -99,7 +105,7 @@ if __name__ == "__main__":
             se.sendEmail("noreply.scaiot.project@gmail.com", emailcontent)
             room.saveConfig()
         time.sleep(1)
-        current_time + datetime.timedelta(minutes=10, seconds=0)
+        current_time += datetime.timedelta(minutes=10, seconds=0)
 
         loopcount += 1
         if loopcount % 10 == 0:

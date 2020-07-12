@@ -484,7 +484,7 @@
         )
     )
 
-    (:action lockRoom
+    (:action lockDoor
         :parameters (?r - room ?d - door)
         :precondition (and
                     (roomEmpty ?r)

@@ -12,7 +12,7 @@ ROOMJSON = 'DATA/room.json'
 ACTIONS = ['heater_On', 'heater_Off', 'cooler_On', 'cooler_Off'
     , 'open_Windows', 'close_Windows', 'nothing', 'refresh_air'
     , 'dimLightsup', 'dimLightsdown', 'fullLights', 'lightsOff'
-    , 'curtain_up', 'curtain_down', 'unlockRoom', 'lockRoom']
+    , 'curtain_up', 'curtain_down', 'unlockRoom', 'lockDoor']
 
 DATAFILENAMES = ['DATA/hum.csv', 'DATA/temp.csv', 'DATA/light.csv', 'DATA/ir_data.csv']
 

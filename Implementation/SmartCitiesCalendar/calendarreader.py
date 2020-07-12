@@ -87,12 +87,12 @@ def readurl(current_time=datetime.datetime.fromisoformat('2020-07-13 08:50:00+02
     else:
         print('too early/ some thing went wrong')
         # inLecture, betweenLectures, afterLastLecture, shortBeforeFirstLecture
-        return False, False, False, True
+        return False, False, False, False
 
 
-curr_time = datetime.datetime.fromisoformat('2020-07-13 08:05:00+02:00')
-while True:
-    readurl(curr_time)
-    curr_time += datetime.timedelta(minutes=10)
+#curr_time = datetime.datetime.fromisoformat('2020-07-13 08:05:00+02:00')
+#while True:
+    #readurl(curr_time)
+    #curr_time += datetime.timedelta(minutes=10)
 
 
