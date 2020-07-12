@@ -59,7 +59,7 @@ class Room():
         jsonstr += json.dumps(self.window.__dict__)
         jsonstr += "}"
 
-        text_file = open("~Desktop/Implementation/DATA/room.json", "w")
+        text_file = open("/home/pi/Desktop/Implementation/DATA/room.json", "w")
         text_file.write(jsonstr)
         text_file.close()
 
