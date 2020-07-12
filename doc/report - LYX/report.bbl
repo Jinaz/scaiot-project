@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{1}
 \providecommand{\url}[1]{\texttt{#1}}
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{https://doi.org/#1}
@@ -9,10 +9,6 @@ Light sensor, \url{https://www.amazon.de/gp/product/B01LX0ZQHL/}
 \bibitem{pi3}
 Raspberry pi 3 modell b plus,
   \url{https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/}
-
-\bibitem{ref_url1}
-Service computing department homepage,
-  \url{https://www.iaas.uni-stuttgart.de/en/department-service-computing/}
 
 \bibitem{m_actuator}
 Servo motor, \url{https://www.amazon.de/gp/product/B07CYZSVKW/}
@@ -40,15 +36,5 @@ Tutorial of servo motor,
 \bibitem{th_tutorial}
 Tutorial of temperature and humidity sensor,
   \url{https://tutorials-raspberrypi.de/raspberry-pi-luftfeuchtigkeit-temperatur-messen-dht11-dht22/}
-
-\bibitem{ref_proc1}
-Author, A.B.: Contribution title. In: 9th International Proceedings on
-  Proceedings. pp.~1--2 (2019)
-
-\bibitem{ref_article1}
-Author, F.: Article title. Journal pp. 99--110 (2016)
-
-\bibitem{ref_book1}
-Author, F., Author, S., Author, T.: Book title. Publisher, 2nd edn.
 
 \end{thebibliography}

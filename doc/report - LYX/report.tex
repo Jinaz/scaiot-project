@@ -5,11 +5,24 @@
 \documentclass[runningheads]{llncs}
 %
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage{cleveref}
 \usepackage{float}
 \usepackage{textcomp}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{listings}
+
+\lstset{
+language=C,
+basicstyle=\small\sffamily,
+numbers=left,
+numberstyle=\tiny,
+frame=tb,
+columns=fullflexible,
+showstringspaces=false
+}
+
 \captionsetup{compatibility=false}
 
 \setcounter{secnumdepth}{3}
@@ -37,32 +50,6 @@ The abstract should briefly summarize the contents of the report in
 %
 \section{System Introduction}
 Describe the scope (background information and problem statement) and the goals of your project.
-
-Table~\ref{tab1} an example of a table.
-
-\begin{table}
-\caption{Table captions should be placed above the
-tables.}\label{tab1}
-\begin{tabular}{|l|l|}
-\hline
-Item & Deadline \\
-\hline
-I1 & D1 \\
-I2 & D2 \\
-I3 & D3 \\
-I4 & D4 \\
-I5 & D5 \\
-\hline
-\end{tabular}
-\end{table}
-
-For citations of references, we prefer the use of square brackets
-and consecutive numbers. The following bibliography provides
-a sample reference list with entries for journal
-articles~\cite{ref_article1}, a book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
-and a homepage~\cite{ref_url1}. Multiple citations are grouped
-\cite{ref_article1,ref_book1},
-\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
 
 \section{System Analysis}
 Describe the user requirements of your system.
@@ -155,12 +142,176 @@ To connect LED to our Raspberry Pi 3 we followed this tutorial~\cite{led_tutoria
 \subsubsection{Inform Human Actuator}\hfill
 \label{soft_imp:actuator}
 \newline
+As mentioned in \ref{imp:hard_imp}, we have assumed some apparat such as curtain, cooler and heater to be controlled by the classroom manager. Thus, we need a method to inform the human actuator, namely the classroom manager.
+
+To do so, we decided to inform the classroom manager through emails. The reason for that is, it is a cost-free action and it is easier to implement through python. When we are implementing the project, we also considered to used Whatsapp message, as we thought it would be more convenient and efficient than email. However, when we were exploring how to send messages through python, we notice that Whatsapp needs a more complexed authentication method (through python) and other tools that charges for each message sent. Hence, we decided to just use email to inform the classroom manager.\\
+
+For our project, we registered a new email account: \url{noreply.scaiot.project@gmail.com}. All emails that needs to be send to the classroom manager will be sent from this email. To actually send the email to the classroom manager we used following code:
+\begin{lstlisting}[language=python]
+def sendEmail(receiver_email, content, subject="Information from scaiot project",
+              sender_email="noreply.scaiot.project@gmail.com",
+              password="xxxxxxxxxxx"):
+    message = MIMEMultipart()
+    message["Subject"] = subject
+    message["From"] = sender_email
+    message["To"] = receiver_email
+    message.attach(MIMEText(content, "plain"))
+
+    port = 587  # For starttls
+    smtp_server = "smtp.gmail.com"
+    context = ssl.create_default_context()
+
+    with smtplib.SMTP(smtp_server, port) as server:
+        server.ehlo()  
+        server.starttls(context=context)
+        server.ehlo()  
+        server.login(sender_email, password)
+        server.sendmail(sender_email, receiver_email, message.as_string())
+\end{lstlisting}
+In this function, we first use code from line 4 to 8 to generate the subject and content of an email and then use code from line 14 to 19 to open an TLS channal to send the email.
+
 
 \subsubsection{AI Planing}\hfill
 \label{soft_imp:ai}
 \newline
+For AI planing part, we decided on solver.planning.domains as it is the most simple one to connect. We also evaluated FastForward (\url{fai.cs.uni-saarland.de/hoffmann/ff.html}) as well as FF-Metric and its different extensions. 
+They provide some functionality which would be needed, but are too much focused on one version of PDDL. The basic FF did not contain fluents which are needed for our comparisons of temperature and light. 
+Another tool we looked at was SMTPlan+. This has too many dependencies and cannot be used on any machine. It also runs until an output is generated. So if there is no plan at all it expands any possible combination of actions until all are tested. This needs too much time to plan our domain and problem. \\
+In the end the decision is the solver.planning.domains. They also provide a piece of python code to connect to their solver. The response is a json string which contains if the status was ok, an error or no response at all.
+This string contains all the information we need to solve our problem. \\
+We need the predicate "(output-done ?r)" to get an output in plan. As it cannot use less than or larger than comparisons as goal. In the following we will look into details of the domain and the problem.\\
+\newline
+\textbf{Domain formulation}\\
+We need to refomulate the situation of our room into a domain. 
+Our lecture room has at least a front door which can be closed and locked or open and unlocked. It also has an arbitary number of windows and curtains which are open or closed. The lights have three states off, dimmed or fully on. We also included the heater and air conditioner, but we need a human to turn them on and off as we do not have a phisical device for them. There is a predicate if the presenter is used or not.
+\newline
+Predicate if we are having a presentation in room:
+\begin{lstlisting}
+(presentingInRoom ?r - room)
+(notpresentingInRoom ?r - room)
+\end{lstlisting}
+An example code for our window in domain:
+\begin{lstlisting}
+(are_closed ?win - window)
+(are_open ?win - window)
+\end{lstlisting}
+There also needs to be a relation to the room:
+\begin{lstlisting}
+(has_window ?r - room ?win - window) ;room has windows
+\end{lstlisting}
+Then there are functions to input the temperature, the desired temperature and the outside temperature. They need the fluents package.
+Another value is the lightlevel. Here we also have a desired value as well as a actual value. These functions are used to compare the values.\\ 
+\newline
+For each possible real action we added an action in the domain. \\
+Let us start discussing the door actions. Its states are open and closed. To switch states it needs two actions. One to close it and one to open it. \\
+The opening is dependent on whether there will be the first lecture of the day in the room. It also needs the state of the door which is closed. The effect will be the unlocking of the door. \\
+The closing is dependent on whether the lecture time is over and whether there are people in the room. \\
+\begin{lstlisting}
+(:action unlockRoom ...)
+(:action lockRoom ...)
+\end{lstlisting}
+
+Next let us look at light related actions. 
+For these actions we need the curtain status and the light status. The light has three levels: off, dimmed and on.\\ 
+We check if the light level inside the room is higher than the desired we need to turn down the lights. If it is lower we need to increase the brightness.\\ 
+
+To decrease the brightness we first check if the curtains are down and try to lower them if they are up. But when they are already down we need to adjust the lights. From the state dimmed we can turn them to off and from on we can turn them to dimmed. \\
+The following actions reflect the description:
+\begin{lstlisting}
+(:action curtain_down ...)
+(:action dimLightsdown ...)
+(:action lightsOff ...)
+\end{lstlisting}
+To increase brightness we check the curtain and the light status again. We can pull up the curtain if they are down. Then adjusting the lights from off to dimmed or from dimmed to fully on can change the light level. \\
+These actions are responsible for turning up the light level.
+\begin{lstlisting}
+(:action curtain_up ...)
+(:action dimLightsup ...)
+(:action fullLights ...)
+\end{lstlisting}
+In the case none of the actions darkened/brightened the room, the lights or the sensor is defect.\\
+
+The temperature and humidity are related with the windows, the heater and the air conditioner. \\
+An action which is always done is refreshening the air between lectures. Here we need the humidity and the windows status. Inbetween lectures the following action takes place to regulate the air.
+Conditions for the windows to open is the between lecture time, closed windows and the actual humidity in the room in comparison to the outside and the desired humidity. 
+\begin{lstlisting}
+;humidity related
+    (:action refresh_air
+        :parameters (?r - room ?o - outside ?win - window)
+        :precondition (and
+                        (betweenLectures ?r)
+                        (has_window ?r ?win)
+                        (are_closed ?win)
+                        (or 
+                        (and
+                  (< (humidity_wanted ?r) (actual_hum ?r))
+                  (> (actual_hum ?r) (outside_hum))
+                        )
+                        (and
+                  (> (humidity_wanted ?r) (actual_hum ?r))
+                  (< (actual_hum ?r) (outside_hum))
+                        )
+                      )
+        )
+        :effect (and
+            (are_open ?win)
+            (not (are_closed ?win))
+            (output-done ?r)
+        )
+    )
+\end{lstlisting}
+
+While a lecture is going on our desired temperature is 24C. To accomplish this goal the windows and the heater and the air conditioner are used as follows.
+
+If the temperature inside is higher than the desired one we need to distinguish between two cases which are related to the outside temperature. If we have a higher or equal temperature outside we need to use the air conditioner to lower the temperature inside to 24C. But if the outside temperature is lower than the inside temperature we open the windows. This we we can avoid using the air conditioner all the time and safe energy.
+\begin{lstlisting}
+(:action open_Windows ...)
+(:action cooler_On ...)
+\end{lstlisting}
+If we reached our desired temperature and the windows are still open we close them. \\
+In case the outside, the inside and the desired temperature are equal there is no need to take any action.
+\begin{lstlisting}
+(:action cooler_Off ...)
+(:action close_Windows ...)
+(:action heater_Off ...)
+\end{lstlisting}
+If the temperature inside is lower than the desired temperature, we also have two cases. If it is colder or equally cold outside as inside, we turn on the heater to reach our desired temperature. If it is warmer outside than inside and the desired temperature is higher than the inside temperature we can open the windows.
+\begin{lstlisting}
+(:action open_Windows ...)
+(:action heater_On ...)
+\end{lstlisting}
+Following table reflects the rules described above, which are realized in the domain code. With o standing for outside temperature, i for inside temperature and d for desired temperature. ac stands for air conditioner.\\
+
+\begin{tabular}{|c |c |c| c|c|c|}
+\hline
+case &o $>$ i $<$ d & o $\leq$ i $<$ d & o $=$ i $=$ d & o $\geq$ i $>$ d & o$ <$ i $>$ d \\
+\hline
+action &open Window & heater on & nothing& ac on& open Window\\
+\hline 
+\end{tabular}\\
+
+For the full domain file please refer to our github \url{https://github.com/Jinaz/scaiot-project/blob/master/Implementation/PDDL_DATA/domain.pddl}
+\newline
+\textbf{Problem formulation}\\
+To use a solver we need a formulation of a problem(problem.pddl).
+To create the problem we need the current status of our room.
+The current status of the window, lights, curtain and door as well as the temperature, humidity, lightlevel and ir-values are written into the problem in the init part. The current weather depending on weather forecast and the current time with respect to whether it is a lecture are also added. 
+The last bit are the desired values.\\
+The PddlWriter puts these information together and fills out a template file. 
+\newline
+\textbf{Plan interpretation}\\
+The plan received is interpreted in the pddlReader. This plan is the response on our domain and problem file. The plan is a json where we filter out the actions and build a list of actions from it. 
+Now that we got a list of actions we just need to execute them.
+
 \section{Discussion and Conclusions}
-Here you can discuss some interesting points or limitations of your system and conclude the report.
+In this project, we implement a small demo that simulate a smart classroom situation. In this demo, the data of the environment is collected from both hardware sensors and online sources. After the data is collected, it was sent to an online AI planner with a given room status and problem definition. Finally, when the plan is calculated from the planner, the corresponding actions will be taken, or the manager will be informed.\\
+
+The core function of a smart classroom is basically realized in out demo, however, there are some features that we wanted to include at the beginning of the project but are end up with not implemented. For example, one feature that is not implemented is to detect whether a beamer is on and if there is reflection on projector curtain and if so, the lights should be closed, and the curtain should be put down. We tried to implement this feature, but we found out that it is hard to detect whether a beamer is on with the hardware we have, and it is also not meaningful to assume that this information can be got from a calendar. Furthermore, the reflection on projector curtain is also hard to detect, as the reflection is also related to a viewer’s watching angle and cannot be detected by a single light sensor. In the AI Planning domain, we have presentation modelled, thus, when we have the corresponding hardware, we can then easily add this feature.\\
+
+During the implementation, we also noticed that some places can be done better. For example, in our implementation we have a model that remembers the status of a classroom, however, a change of a status is triggered by the plan. This means, if a plan told us to open the window, we will then execute the window actuator to make it open and set the window status of the classroom to open. A problem might occur is that, when the actuator is broken or offline, the status will still be changed even though the action has not been taken. The reason for that is because we do not have corresponding hardware that can give us information of the status of a classroom (such as if a door or window is locked, if lights is on, etc.), so we have to keep the changes of status based on actions.\\
+
+The biggest problem we have faced during the implementation is the lack of hardware and time limitation. Based on the resources we have, we successfully implemented a small demo that can collect data from sensors and online sources. It will then take corresponding actions from a AI Planning plan to achieve a given goal. To conclude, we are satisfied with the result we have achieved in the end and we think doing this project is a good opportunity to explore internet of things
+
 
 %
 % ---- Bibliography ----

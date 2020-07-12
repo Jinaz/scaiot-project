@@ -1,27 +1,24 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: report.aux
 The style file: splncs04.bst
 Database file #1: mybib.bib
-Warning--entry type for "ref_url1" isn't style-file defined
---line 28 of file mybib.bib
 Warning--entry type for "pi3" isn't style-file defined
---line 34 of file mybib.bib
+--line 1 of file mybib.bib
 Warning--entry type for "th_sensor" isn't style-file defined
---line 39 of file mybib.bib
+--line 6 of file mybib.bib
 Warning--entry type for "th_data" isn't style-file defined
---line 44 of file mybib.bib
+--line 11 of file mybib.bib
 Warning--entry type for "th_tutorial" isn't style-file defined
---line 49 of file mybib.bib
+--line 16 of file mybib.bib
 Warning--entry type for "l_sensor" isn't style-file defined
---line 54 of file mybib.bib
+--line 21 of file mybib.bib
 Warning--entry type for "l_tutorial" isn't style-file defined
---line 59 of file mybib.bib
+--line 26 of file mybib.bib
 Warning--entry type for "m_actuator" isn't style-file defined
---line 64 of file mybib.bib
+--line 31 of file mybib.bib
 Warning--entry type for "m_tutorial" isn't style-file defined
---line 69 of file mybib.bib
+--line 36 of file mybib.bib
 Warning--entry type for "led_tutorial" isn't style-file defined
---line 75 of file mybib.bib
-Warning--to sort, need author or key in ref_url1
+--line 42 of file mybib.bib
 Warning--to sort, need author or key in pi3
 Warning--to sort, need author or key in th_sensor
 Warning--to sort, need author or key in th_data
@@ -31,5 +28,4 @@ Warning--to sort, need author or key in l_tutorial
 Warning--to sort, need author or key in m_actuator
 Warning--to sort, need author or key in m_tutorial
 Warning--to sort, need author or key in led_tutorial
-Warning--empty year in ref_book1
-(There were 21 warnings)
+(There were 18 warnings)
