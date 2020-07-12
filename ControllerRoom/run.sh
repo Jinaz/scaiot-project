@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Read the user input
 while true; do
   echo "Enter command, for help type \"help\" "

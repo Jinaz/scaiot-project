@@ -16,23 +16,25 @@
     
     ;(roomEmpty r0)
     ;(lectureTimeOver r0)
-    (inLectureTime r0)
-    
+    ;(inLectureTime r0)
+    ;(betweenLectures r0)
+    (firstlecture r0)
+
     (has_window r0 win1)
     (has_door r0 d0)
     (has_cooler c1 r0)
     (has_heater h1 r0)
     (has_light r0 l0)
     (has_curtain r0 cu0)
-    
+
     (not (output-done r0))
-    
+
     (presentingInRoom r0)
-    
+
     (are_up cu0)
-    (are_off l0)
+    (are_fully_on l0)
     (are_closed win1)
-    (is_unlocked d0)
+    (is_locked d0)
     (is_off_heat h1)
     (is_off_cool c1)
     

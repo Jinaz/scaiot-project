@@ -7,8 +7,8 @@ import sys
 
 import RoomModel
 
-ROOMJSON = "../Implementation/DATA/room.json"
-TRIGGERFILE = "../Implementation/DATA/trigger.llz"
+ROOMJSON = "~/Desktop/Implementation/DATA/room.json"
+TRIGGERFILE = "~/Desktop/Implementation/DATA/trigger.llz"
 
 def loadRoom():
     room = RoomModel.initRoom()

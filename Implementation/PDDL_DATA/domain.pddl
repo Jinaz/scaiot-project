@@ -378,24 +378,37 @@
         :precondition (or
                     (and
                     (has_light ?r ?l)
-                    (inLectureTime ?r)
-                    (are_dimmed ?l)
-                    (has_curtain ?r ?cu)
-                    (are_down ?cu)
                     (or
                         (and
+                            (has_curtain ?r ?cu)
+                            (are_down ?cu)
+                            (are_dimmed ?l)
+                            (inLectureTime ?r)
                             (notpresentingInRoom ?r)
                             (> (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         )
                         (and
+                            (has_curtain ?r ?cu)
+                            (are_down ?cu)
+                            (are_dimmed ?l)
+                            (inLectureTime ?r)
                             (presentingInRoom ?r)
                             (> (wantedLightlevelPPT ?r) (actual_lightlevel ?r))
                         )
                     )
                     )
                     (and
+                        (has_light ?r ?l)
                         (roomEmpty ?r)
                         (lectureTimeOver ?r)
+                        (or
+                            (are_dimmed ?l)
+                            (are_fully_on ?l)
+                        )
+                    )
+                    (and
+                        (has_light ?r ?l)
+                        (betweenLectures ?r)
                         (or
                             (are_dimmed ?l)
                             (are_fully_on ?l)
@@ -458,22 +471,20 @@
     
     ;door related
     (:action unlockRoom
-        :parameters (?r - room ?d - door ?l - light)
+        :parameters (?r - room ?d - door)
         :precondition (and
                         (firstlecture ?r)
                         (has_door ?r ?d)
                         (is_locked ?d)
-                        (has_light ?r ?l)
-                        (are_off ?l)
         )
-        :effect (and 
+        :effect (and
             (not (is_locked ?d))
             (is_unlocked ?d)
-            (are_fully_on ?l)
+            (output-done ?r)
         )
     )
-    
-    (:action lockRoom 
+
+    (:action lockRoom
         :parameters (?r - room ?d - door)
         :precondition (and
                     (roomEmpty ?r)
@@ -484,6 +495,7 @@
         :effect (and
             (not (is_unlocked ?d))
             (is_locked ?d)
+            (output-done ?r)
         )
     )
 )

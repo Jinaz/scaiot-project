@@ -14,8 +14,8 @@ fi
 
 
 if [ "$x" = "getData" ]; then
-  sshpass -p "$password" scp ~/Desktop/ $username@$Ip:~/Desktop/Implementation/DATA/temp.csv
-  sshpass -p "$password" scp ~/Desktop/ $username@$Ip:~/Desktop/Implementation/DATA/hum.csv
-  sshpass -p "$password" scp ~/Desktop/ $username@$Ip:~/Desktop/Implementation/DATA/light.csv
-  sshpass -p "$password" scp ~/Desktop/ $username@$Ip:~/Desktop/Implementation/DATA/ir_data.csv
+  sshpass -p "$password" scp $username@$Ip:~/Desktop/Implementation/DATA/temp.csv ~/Desktop/temp.csv
+  sshpass -p "$password" scp $username@$Ip:~/Desktop/Implementation/DATA/hum.csv ~/Desktop/hum.csv
+  sshpass -p "$password" scp $username@$Ip:~/Desktop/Implementation/DATA/light.csv ~/Desktop/light.csv
+  sshpass -p "$password" scp $username@$Ip:~/Desktop/Implementation/DATA/ir_data.csv ~/Desktop/ir_data.csv
 fi
