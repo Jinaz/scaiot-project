@@ -28,34 +28,85 @@ showstringspaces=false
 \setcounter{secnumdepth}{3}
 \begin{document}
 %
-\title{Come Up with a Title for Your Project}
+\title{Smart Lecture Rooms at Universities}
 
-\author{Group ID: First Author \and
-Second Author \and
-Third Author}
+\author{Group ID 07: Yunxuan Li \and
+Jingxi Zhang \and
+Zhixian Li}
 
 \institute{Service Computing Department, IAAS, University of Stuttgart
-\email{firstname.lastname@uni-stuttgart.de}}
+\email{st119871,st141130,st146584@stud.uni-stuttgart.de}}
 %
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-The abstract should briefly summarize the contents of the report in
-150--250 words. 
+This project is part of the lecture smart cities and internet of things \cite{ref_url1}. A lecture room is the most often and common place that student will go in an university. However, it is not easy to keep everyone in a lecture room comfortable, health and productive while have the lecture room itself secure and energy efficient. To achieve this goal, we plan to develop a smart lecture room system that uses different sensors to monitor the current state of a lecture room and automatically make decisions based on the information it has gathered.
 
-\keywords{First keyword  \and Second keyword \and Another keyword.}
+\keywords{Lecture Room  \and Smart Building \and Comfortable \and Energy Efficiency \and AI Planning \and Cloud}
 \end{abstract}
 %
 %
 %
 \section{System Introduction}
-Describe the scope (background information and problem statement) and the goals of your project.
+For students, a lecture room might be the most often place we stay in an university. However, it’s hard to have everyone comfortable in a lecture room, for example, someone might want to have fresh air, but it could be too cold for others. In addition, it would be hard to keep everyone productive, for example, there might be a reflection on black board, but the professor did not notice. Furthermore, it could also be hard to keep the security and energy efficiency of a lecture room, for example, the door of a lecture could be left open and the light of a lecture room could be left on after a lecture is done. Besides, it is not necessary to run the HVAC devices at full capacity if the room is not occupied. Therefore, we want to develop a smart lecture room system that not only tries to make everyone in the room comfortable and productive but also keeps the lecture room secure and energy efficient. \\
+To accomplish this goal, we decided to use different sensors in a lecture room that monitor the temperature, the weather, the air quality and so on. Based on these sensors, we will develop an automate system that decides when to make actions such like open the window or close the light. Also, with the use of calendar data the system is able to plan ahead to schedule the heating device or open the doors. Unfortunately, the system cannot carry out all these actions automatically due to limited hardware support. Thus, the decision will be sent to the professor or the room management so that they can do the corresponding actions.
 
 \section{System Analysis}
-Describe the user requirements of your system.
+We will describe the system functionality using user stories in the following, where these user stories will be the main focus of our project.
+\begin{itemize}
+\item As a lecturer I want the room to automatically adjust light and curtains, so that my powerpoint is clearly visible.
+\item As a student or a lecturer I want the room temperature and humidity to be as ideal as possible for a lecture.
+\item As a manager of the cost of the buildings I want the system to idealize the energy so that the cost is minimized.
+\end{itemize}
+ 
+These two user stories involve a door lock. As a physical door lock with electric mechanism is expensive we will stick to a simplification like sending an email or using a light to indicate the state of the door.
+\begin{itemize}
+\item As a caretaker of the building I want the doors to be locked after lecture hours so that the security of the building is able to be guaranteed. 
+\item As a student I want the doors to be open before lecture to be able to prepare my utils for the lecture.\\
+\end{itemize}
 
 \section{System Architecture Design}
-Describe and provide a design of the architecture of your system.
+This section describes our system architecture of our project which is depicted in \cref{fig:SystemArchitecture}.
+The system's architecture is divided into four layers, (1) the \textit{physical layer}, (2) the \textit{ubiquitous layer}, (3) the \textit{reasoning layer}, and (4) the \textit{user layer}.
+The components interact with each other via HTTP.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{../img/SystemArchitecture.pdf}
+\caption{SystemArchitecture}
+\label{fig:SystemArchitecture}
+\end{figure}
+
+The physical layer contains the components which are interacting with their physical environment.
+There are two kinds of components, sensor components which are retrieving the sensor data for our project, and actuator components which are performing actions on their surrounding area to controll the temperature and light.
+As sensor data we collect the temperature, humidity and light level of the lecture room via sensors on a Raspberri Pi.
+They are sent to the ubiquitous layer though a gateway.
+The actuators on the other hand serve as consumers in the physical layer.
+They receive commands to be executed from the ubiquitous layer via another gateway and adapt the environment according to the commands.
+As actuators we have a \texttt{LightController}, which is supposed to switch the light of the room off and on and to adjust the intensity of the light, i.e. the light level.
+The \texttt{LockController} can lock and unlock the door of the room according to the calendar, so that outside of the allowed booking times nobody is allowed to enter the room without additional access authorization, like a key.
+Furthermore a Heating Device should be controlled by the overall system.
+For this purpose, a Smart Home thermostat could be used, which can operate the heating and is controlled by an application.
+However, due to a lack of hardware, this cannot be implemented within the scope of this project.
+For this reason the system is dependent on human help.
+The same applies to the activation, deactivation and adjustment of the air conditioning system.
+\texttt{LightController} and \texttt{LockController} are deployed on a Raspberry Pi.
+
+The ubiquitous layer is the heart of the application.
+It consists of the components \texttt{DataProcessor}, \texttt{Calendar}, and \texttt{WeatherForecast}.
+The \texttt{DataProcessor} receives the sensor data from the sensors via a gateway and processes them.
+For the weather forecast for the next 24 hours the \texttt{DataProcessor} calls the \texttt{WeatherForecast} component, which runs as \textit{Azure Function}~\cite{AzureFun50:online} in the Microsoft Azure Cloud.
+The function gets the data for the location of the lecture room from \url{weatherbit.io} and returns the forecast.
+In addition to sensor and weather data, the \texttt{DataProcessor} also retrieves calendar events for the room from the \texttt{Calendar} component, which retrieves the data via the \textit{Google Calendar API}~\cite{APIRefer59:online} from the Google Calendar of the room in which the lecturers entered them.
+All data is then sent by the \texttt{DataProcessor} to the reasoning layer, where it is further processed by the \texttt{PlannerService}.
+As a result of the processing, the \texttt{DataProcessor} receives a plan with actions to be performed, which it sends to the actuators via another gateway.
+
+Our \texttt{PlannerService} at the reasoning layer is the part where \textit{AI Planning} comes into play. 
+As described, it receives data about the environment from \texttt{DataProcessor} and makes a decision based on it using a \textit{PDDL Solver} in the cloud~\cite{solverpl71:online} as planner.
+The cloud solver is called via an HTTP request. 
+
+The user layer insists on the interaction of the lecturers with the Google Calendar, as well as a \texttt{User Interface}, in which the light and air conditions can be adjusted manually.
+
 
 \section{System Implementation}
 \label{sec:imp}
@@ -68,12 +119,12 @@ The whole project is based on Raspberry Pi 3 Modell B Plus~\cite{pi3}. The compl
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{img/demo}
+\includegraphics[width=0.6\textwidth]{img/demo}
 \caption{Complete Demo} 
 \label{pic:demo}
 \end{figure}
 
-In the following, we will first shortly explain each apparat that is used in this demo and then describe how it is connected to Raspberry Pi 3. As we used hardware sensor and software sensor in this project, we will only introduce the hardware sensors that are used in the project in this section. For information of how we gathered data from website, please refer to section ???
+In the following, we will first shortly explain each apparat that is used in this demo and then describe how it is connected to Raspberry Pi 3. As we used hardware sensor and software sensor in this project, we will only introduce the hardware sensors that are used in the project in this section. For information of how we gathered data from website, please refer to section \ref{soft_imp:sensor}
 
 \subsubsection{Raspberry Pi 3 Modell B Plus}\hfill
 \label{hard_imp:pi3}
@@ -138,6 +189,26 @@ To connect LED to our Raspberry Pi 3 we followed this tutorial~\cite{led_tutoria
 \subsubsection{Gather Data from Internet Sources}\hfill
 \label{soft_imp:sensor}
 \newline
+Since our project needs the hourly weather forecast for the next 24 hours, it is necessary to use a weather service that can provide this data for a specific location via an API.
+We decided to use \url{weatherbit.io} for this purpose, as the provider meets our requirements.
+Weatherbit offers several API endpoints, including the current weather and the weather forecast we use.
+In order to use the API of weatherbit, an API key is required, which is provided after account creation and selection of a service plan.
+For our project the free plan is sufficient.
+To ensure scalability and elasticity, the \texttt{WeatherForecast} component was implemented as \textit{Azure Function} in TypeScript, which can also be executed locally via the corresponding VisualStudio Code Extension.
+The function can then call the weather forecast API endpoint with a \texttt{GET} request to \texttt{https://api.weatherbit.io/v2.0/forecast/hourly}.
+The request must contain the location, the number of hours and the API key as query.
+The weather data is returned in JSON format.
+
+Besides, to plan ahead to open and lock the door or schedule the heating device and air conditioner we need the calendar data of the corresponding room. 
+The Google Calendar API~\cite{APIRefer59:online} offers an API endpoint to retrieve calendar events via HTTP call.
+First, however, the \texttt{Calendar} component must authenticate to the Google Calendar API via OAuth.
+To do this, you must first enable the API for an account.
+Activating it will provide you with credentials that must be specified during authentication.
+If the authentication is successful, the \texttt{Calendar} component will receive an access token that allows the component to access the events of the calendar via the API. 
+The component is implemented as an Express Server in Node.js and provides an endpoint for the components of the system to query the next 10 events in the room, which are then returned in JSON format.
+Similar to the \texttt{WeatherForecast} component, the \texttt{Calendar} component can be deployed to the Microsoft Azure in a few steps through a VisualStudio code extension.
+However, the \textit{Web App} service of Microsoft Azure is used for this purpose~\cite{WebAppDi86:online}.
+Alternatively, the component can be installed locally or on any VM, provided the environment supports node version 12 or higher.
 
 \subsubsection{Inform Human Actuator}\hfill
 \label{soft_imp:actuator}
