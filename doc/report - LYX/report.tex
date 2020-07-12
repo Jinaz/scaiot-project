@@ -1,0 +1,173 @@
+% This is samplepaper.tex, a sample chapter demonstrating the
+% LLNCS macro package for Springer Computer Science proceedings;
+% Version 2.20 of 2017/10/04
+%
+\documentclass[runningheads]{llncs}
+%
+\usepackage{graphicx}
+\usepackage{cleveref}
+\usepackage{float}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
+
+\setcounter{secnumdepth}{3}
+\begin{document}
+%
+\title{Come Up with a Title for Your Project}
+
+\author{Group ID: First Author \and
+Second Author \and
+Third Author}
+
+\institute{Service Computing Department, IAAS, University of Stuttgart
+\email{firstname.lastname@uni-stuttgart.de}}
+%
+\maketitle              % typeset the header of the contribution
+%
+\begin{abstract}
+The abstract should briefly summarize the contents of the report in
+150--250 words. 
+
+\keywords{First keyword  \and Second keyword \and Another keyword.}
+\end{abstract}
+%
+%
+%
+\section{System Introduction}
+Describe the scope (background information and problem statement) and the goals of your project.
+
+Table~\ref{tab1} an example of a table.
+
+\begin{table}
+\caption{Table captions should be placed above the
+tables.}\label{tab1}
+\begin{tabular}{|l|l|}
+\hline
+Item & Deadline \\
+\hline
+I1 & D1 \\
+I2 & D2 \\
+I3 & D3 \\
+I4 & D4 \\
+I5 & D5 \\
+\hline
+\end{tabular}
+\end{table}
+
+For citations of references, we prefer the use of square brackets
+and consecutive numbers. The following bibliography provides
+a sample reference list with entries for journal
+articles~\cite{ref_article1}, a book~\cite{ref_book1}, proceedings without editors~\cite{ref_proc1},
+and a homepage~\cite{ref_url1}. Multiple citations are grouped
+\cite{ref_article1,ref_book1},
+\cite{ref_article1,ref_book1,ref_proc1,ref_url1}.
+
+\section{System Analysis}
+Describe the user requirements of your system.
+
+\section{System Architecture Design}
+Describe and provide a design of the architecture of your system.
+
+\section{System Implementation}
+\label{sec:imp}
+% Describe the implementation of your system. This section is only relevant for the report and should be omitted for the project description. 
+The implementation of our project is divided into hardware implementation and software implementation. In the following, we will first describe the hardware implementation in \ref{imp:hard_imp} and then describe the software implementation in \ref{imp:soft_imp}.
+
+\subsection{Hardware Implementation}
+\label{imp:hard_imp}
+The whole project is based on Raspberry Pi 3 Modell B Plus~\cite{pi3}. The complete demo looks like in picture \ref{pic:demo}. This demo can be seen as two parts. The first part is the Raspberry Pi 3 and the second part is the demo classroom with sensor and actuator connected to Raspberry Pi 3 through a breadboard. In this demo, we simulate a classroom with one window (actuator) and curtain (virtual), one door (actuator), three lights (actuator), a heater (virtual), a cooler (virtual) and with a temperature sensor (hardware), a humidity sensor (hardware), a light sensor (hardware), a weather source (website) and a calendar source (website). Because of the limitation of hardware, only the window, the door and three lights can be controlled by ourselves, all other apparat are considered to be virtual and we assume that the manager of the classroom has access to that. Thus, to control those virtual apparats, we will inform the manager instead of controlling it directly through Raspberry Pi 3.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{img/demo}
+\caption{Complete Demo} 
+\label{pic:demo}
+\end{figure}
+
+In the following, we will first shortly explain each apparat that is used in this demo and then describe how it is connected to Raspberry Pi 3. As we used hardware sensor and software sensor in this project, we will only introduce the hardware sensors that are used in the project in this section. For information of how we gathered data from website, please refer to section ???
+
+\subsubsection{Raspberry Pi 3 Modell B Plus}\hfill
+\label{hard_imp:pi3}
+\newline
+We used Raspberry Pi as our core calculation and control part. The reason for that is Raspberry Pi is a very cheap computer that runs Linux and we currently have one in hand. Another advantage of Raspberry Pi over traditional computer is that it provides a set of general-purpose input/output(GPIO) pins that allow us to control electronic components such as temperature sensors or different actuators.
+
+\subsubsection{Hardware Sensors}\hfill
+\label{hard_imp:sensor}
+\newline
+The hardware sensors that are used in our project are listed below.
+\newline
+\textbf{Temperature and humidity sensor~\cite{th_sensor}}\\
+For temperature and humidity, we found DHT11 sensor very useful as this sensor can provide us data of temperature and humidity at the same time. Furthermore, we found that the measurement range and accuracy of DHT11 is~\cite{th_data}:
+\begin{itemize}
+\item Temperature Range: 0-50 \textdegree{}C
+\item Temperature Accuracy: $\pm$2\% \textdegree{}C 
+\item Humidity Range: 20-90\% RH
+\item Humidity Accuracy: $\pm$5\% RH
+\end{itemize}
+which is also suitable for our purpose. To connect DHT11 to our Raspberry Pi 3 we followed this tutorial~\cite{th_tutorial}. In our demo, we have connected DHT11 to pin 13 which corresponds to GPIO27.
+\newline
+\textbf{Light sensor~\cite{l_sensor}}\\
+For light sensor, we used the light sensor from kwmobile. The data gathered from this light sensor is the resistance of the light-dependent resistor. The relation between the resistance and the brightness is that: the brighter the lights, the smaller the resistance.
+
+To connect this light sensor to our Raspberry Pi 3 we followed this tutorial~\cite{l_tutorial}. In our demo, we have connected the light sensor to pin 7 which corresponds to GPIO4.
+
+\subsubsection{Hardware Actuator}\hfill
+\label{hard_imp:actuator}
+\newline
+The hardware actuators that are used in our project are listed below.
+\newline
+\textbf{Servo motor for window and door~\cite{m_actuator}}\\
+To simulate the window and door we used two servo motors respectively. Both motors are Servo Motor, the difference between the implementation of being a window and a door is that, for window we let the motor rotate from the middle as shown in figure \ref{pic:window}, and for door we let the motor rotate from the lift side as shown in figure \ref{pic:door}. 
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{img/window}
+  \caption{Servo motor for window}
+  \label{pic:window}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{img/door}
+  \caption{Servo motor for door}
+  \label{pic:door}
+\end{subfigure}
+\caption{Servo motor for window(a) and door(b)}
+\label{pic:sm}
+\end{figure}
+
+To connect both servo motor to our Raspberry Pi 3 we followed this tutorial~\cite{m_tutorial}. In our demo, we have connected the servo motor for window to pin 13 which corresponds to GPIO27 and we have connected the servo motor for door to pin 18 which corresponds to GPIO24.
+\newline
+\textbf{LED as lights}\\
+To simulate the lights in a classroom we used three white LEDs as in a real classroom there are also multiple light sources. The LED we are using is just the most common LED from the market as we don’t have any other better hardware for lights.
+
+To connect LED to our Raspberry Pi 3 we followed this tutorial~\cite{led_tutorial}. As in the tutorial, we also used a resistor in each LED circuit. This resistor can be moved away but the LED light will then be too brighter. In our demo, we have connected three LEDs (from right to left) to pin 29 (GPIO5), pin 31 (GPIO6) and pin 33 (GPIO13) respectively.
+
+\subsection{Software Implementation}
+\label{imp:soft_imp}
+
+\subsubsection{Gather Data from Internet Sources}\hfill
+\label{soft_imp:sensor}
+\newline
+
+\subsubsection{Inform Human Actuator}\hfill
+\label{soft_imp:actuator}
+\newline
+
+\subsubsection{AI Planing}\hfill
+\label{soft_imp:ai}
+\newline
+\section{Discussion and Conclusions}
+Here you can discuss some interesting points or limitations of your system and conclude the report.
+
+%
+% ---- Bibliography ----
+%
+\bibliographystyle{splncs04}
+\bibliography{mybib}
+
+All links were last followed on April 17, 2020.
+
+\end{document}
