@@ -1,7 +1,42 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: report.aux
 The style file: splncs04.bst
 Database file #1: mybib.bib
-Warning--entry type for "ref_url1" isn't style-file defined
+Warning--entry type for "pi3" isn't style-file defined
 --line 1 of file mybib.bib
+Warning--entry type for "th_sensor" isn't style-file defined
+--line 6 of file mybib.bib
+Warning--entry type for "th_data" isn't style-file defined
+--line 11 of file mybib.bib
+Warning--entry type for "th_tutorial" isn't style-file defined
+--line 16 of file mybib.bib
+Warning--entry type for "l_sensor" isn't style-file defined
+--line 21 of file mybib.bib
+Warning--entry type for "l_tutorial" isn't style-file defined
+--line 26 of file mybib.bib
+Warning--entry type for "m_actuator" isn't style-file defined
+--line 31 of file mybib.bib
+Warning--entry type for "m_tutorial" isn't style-file defined
+--line 36 of file mybib.bib
+Warning--entry type for "led_tutorial" isn't style-file defined
+--line 42 of file mybib.bib
+Warning--entry type for "ref_url1" isn't style-file defined
+--line 47 of file mybib.bib
+Warning--entry type for "WebAppDi86:online" isn't style-file defined
+--line 71 of file mybib.bib
+Warning--entry type for "APIRefer59:online" isn't style-file defined
+--line 80 of file mybib.bib
 Warning--to sort, need author or key in ref_url1
-(There were 2 warnings)
+Warning--to sort, need author or key in AzureFun50:online
+Warning--to sort, need author or key in APIRefer59:online
+Warning--to sort, need author or key in solverpl71:online
+Warning--to sort, need author or key in pi3
+Warning--to sort, need author or key in th_sensor
+Warning--to sort, need author or key in th_data
+Warning--to sort, need author or key in th_tutorial
+Warning--to sort, need author or key in l_sensor
+Warning--to sort, need author or key in l_tutorial
+Warning--to sort, need author or key in m_actuator
+Warning--to sort, need author or key in m_tutorial
+Warning--to sort, need author or key in led_tutorial
+Warning--to sort, need author or key in WebAppDi86:online
+(There were 26 warnings)
